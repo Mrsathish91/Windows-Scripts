@@ -1,0 +1,25 @@
+# Set the target OU
+# Prompt for the User ID (sAMAccountName or username)
+$userID = Read-Host "Enter the Sample User ID (username)"
+
+# Get the AD user object by User ID
+$userObject = Get-ADUser -Identity $userID
+
+# Extract the Distinguished Name (DN) and parse it to get the OU part
+$targetOU = ($userObject.DistinguishedName -split ",", 2)[1]
+
+#$targetOU = "OU=SBI_CHN,OU=Chennai,DC=sathishtech,DC=com"
+
+# Read the list of users from the text file
+$userList = Get-Content "C:\Temp\Testusers.txt"
+
+# Loop through each user in the list and move to the new OU
+foreach ($user in $userList) {
+    # Get the user object by username
+    $userObject = Get-ADUser -Identity $user
+    
+    # Move the user to the new OU
+    Move-ADObject -Identity $userObject.DistinguishedName -TargetPath $targetOU
+    
+    Write-Host "User $user moved to $targetOU"
+}
