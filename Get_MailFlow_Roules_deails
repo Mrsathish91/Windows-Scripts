@@ -1,0 +1,31 @@
+=======================================================================================================================
+Windows PowerShell
+Copyright (C) 2016 Microsoft Corporation. All rights reserved.
+
+PS C:\Users\Administrator> (Get-TransportRule nancy_out).ExceptIfRecipientDomainIs
+Get-TransportRule : The term 'Get-TransportRule' is not recognized as the name of a cmdlet, function, script file, or
+operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try
+again.
+At line:1 char:2
++ (Get-TransportRule nancy_out).ExceptIfRecipientDomainIs
++  ~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-TransportRule:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\Administrator> Add-PSSnapin Microsoft.Exchange.Management.PowerShell.E2010
+PS C:\Users\Administrator> (Get-TransportRule nancy_out).ExceptIfRecipientDomainIs
+
+Value
+-----
+gmail.com
+
+
+PS C:\Users\Administrator>
+=======================================================================================================================
+
+
+
+
+
+
+
